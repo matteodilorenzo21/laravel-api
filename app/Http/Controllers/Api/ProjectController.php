@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Project;
 
 class ProjectController extends Controller
 {
@@ -12,7 +13,16 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::orderBy('created_at', 'DESC')->get();
+
+        // images path for storage:link
+        foreach ($projects as $project) {
+            if ($project->image) {
+                $project->image = url('storage/images/' . $project->image);
+            }
+        }
+
+        return response()->json($projects);
     }
 
     /**

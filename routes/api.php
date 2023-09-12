@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProjectController;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,7 @@ Route::get('/projects', function () {
     $projects = Project::all();
     return response()->json($projects);
 });
+
+Route::get('/projects', [ProjectController::class, 'index']);
+
+Route::apiResource('projects', ProjectController::class);

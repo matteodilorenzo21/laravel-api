@@ -12,6 +12,11 @@ class Project extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $with = [
+        'category',
+        'technologies',
+    ];
+
     protected $fillable = [
         'title',
         'category_id',
