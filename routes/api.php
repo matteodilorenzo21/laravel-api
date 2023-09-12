@@ -16,12 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Project List Route
+
 Route::get('/projects', function () {
     $projects = Project::all();
     return response()->json($projects);
 });
 
+// Project List Route
 Route::get('/projects', [ProjectController::class, 'index']);
 
-Route::apiResource('projects', ProjectController::class);
+// Project Details Route
+Route::get('/projects/{project}', [ProjectController::class, 'show']);
+
+// Route::apiResource('projects', ProjectController::class);
